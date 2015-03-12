@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Configuration file for Drupal's multi-site directory aliasing feature.
+ *
+ * {{ ansible_managed }}
+ */
+{% for directory, site in drupal_settings_sites.iteritems() %}
+{% for alias in site.aliases|default([]) %}
+$sites['{{ alias }}'] = '{{ directory }}';
+{% endfor %}
+{% endfor %}

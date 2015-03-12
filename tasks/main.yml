@@ -1,0 +1,18 @@
+---
+- name: "Create sites directory"
+  file: path={{ drupal_settings_basedir }} state=directory
+  tags: ['drupal']
+
+- name: "Create sites.php file"
+  template: src=sites.j2 dest="{{ drupal_settings_basedir }}/sites.php" mode=0644
+  tags: ['drupal']
+
+- name: "Create sites directories"
+  file: path={{ drupal_settings_basedir }}/{{ item.key }} state=directory
+  with_dict: drupal_settings_sites
+  tags: ['drupal']
+
+- name: "Create settings.php files"
+  template: src=settings.j2 dest={{ drupal_settings_basedir }}/{{ item.key }}/settings.php mode=0644
+  with_dict: drupal_settings_sites
+  tags: ['drupal']
