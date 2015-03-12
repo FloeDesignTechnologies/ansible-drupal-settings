@@ -37,7 +37,7 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 License
 -------
 
-BSD
+Apache v2
 
 Author Information
 ------------------
