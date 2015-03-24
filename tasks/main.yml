@@ -8,11 +8,16 @@
   tags: ['drupal']
 
 - name: "Create sites directories"
-  file: path={{ drupal_settings_basedir }}/{{ item.key }} state=directory
+  file: path={{ drupal_settings_basedir }}/{{ item.key }} state=directory mode=775
+  with_dict: drupal_settings_sites
+  tags: ['drupal']
+
+- name: "Make sure the settings.php files are writable"
+  file: path={{ drupal_settings_basedir }}/{{ item.key }}/settings.php mode=0664
   with_dict: drupal_settings_sites
   tags: ['drupal']
 
 - name: "Create settings.php files"
-  template: src=settings.j2 dest={{ drupal_settings_basedir }}/{{ item.key }}/settings.php mode=0644
+  template: src=settings.j2 dest={{ drupal_settings_basedir }}/{{ item.key }}/settings.php mode=0444
   with_dict: drupal_settings_sites
   tags: ['drupal']
