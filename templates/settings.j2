@@ -157,7 +157,7 @@ $conf["{{ keys|join('"]["') }}"] = array(
 drupal_fast_404();
 {% endif %}
 
-{% for file in (drupal_settings_default.includes|default({}) + (item.value.includes|default({})).items()) %}
+{% for file in (drupal_settings_default.includes|default([]) + (item.value.includes|default([]))) %}
 /**
  * Include some custom PHP scripts if needed.
  */
