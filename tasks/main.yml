@@ -13,7 +13,7 @@
   tags: ['drupal']
 
 - name: "Make sure the settings.php files are writable"
-  file: path={{ drupal_settings_basedir }}/{{ item.key }}/settings.php mode=0664
+  file: path={{ drupal_settings_basedir }}/{{ item.key }}/settings.php state=touch mode=0664
   with_dict: drupal_settings_sites
   tags: ['drupal']
 
